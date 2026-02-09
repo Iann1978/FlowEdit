@@ -16,8 +16,7 @@ A FastAPI-based REST API server for text-guided image editing using the FLUX mod
 
 1. Install the server dependencies:
 ```bash
-cd server/flowedit/server
-pip install -r requirements.txt
+pip install -r server/requirements.txt
 ```
 
 2. Ensure FlowEdit dependencies are installed (torch, diffusers, transformers, etc.)
@@ -28,7 +27,7 @@ pip install -r requirements.txt
 
 The server can be configured using environment variables:
 
-- `FLOWEDIT_JOBS_DIR`: Directory for job data (default: `server/flowedit/server/jobs/`)
+- `FLOWEDIT_JOBS_DIR`: Directory for job data (default: `server/jobs/`)
 - `FLOWEDIT_MODEL_PATH`: FLUX model path (default: `black-forest-labs/FLUX.1-dev`)
 - `FLOWEDIT_DEVICE`: Device to use - `cuda` or `cpu` (default: auto-detect)
 - `FLOWEDIT_MAX_CONCURRENT_JOBS`: Maximum parallel jobs (default: `1`)
@@ -38,18 +37,19 @@ The server can be configured using environment variables:
 ## Running the Server
 
 ### Basic usage:
+From the project root directory:
 ```bash
-python -m server.flowedit.server.main
+python -m server.main
 ```
 
 Or using uvicorn directly:
 ```bash
-uvicorn server.flowedit.server.main:app --host 0.0.0.0 --port 8001
+uvicorn server.main:app --host 0.0.0.0 --port 8001
 ```
 
 ### With custom configuration:
 ```bash
-FLOWEDIT_DEVICE=cuda FLOWEDIT_MAX_CONCURRENT_JOBS=2 python -m server.flowedit.server.main
+FLOWEDIT_DEVICE=cuda FLOWEDIT_MAX_CONCURRENT_JOBS=2 python -m server.main
 ```
 
 The server will start on `http://localhost:8001`
